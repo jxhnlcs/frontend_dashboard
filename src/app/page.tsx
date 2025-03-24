@@ -11,8 +11,17 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  Legend,
 } from "recharts";
 import { motion } from "framer-motion";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const data = [
   { name: "Jan", value: 400 },
@@ -22,6 +31,58 @@ const data = [
   { name: "Mai", value: 700 },
   { name: "Jun", value: 900 },
   { name: "Jul", value: 1000 },
+];
+
+const analyticsData = [
+  {
+    name: "Jan",
+    usuarios: 400,
+    atividades: 300,
+    performance: 85,
+    engajamento: 75,
+  },
+  {
+    name: "Fev",
+    usuarios: 450,
+    atividades: 350,
+    performance: 88,
+    engajamento: 78,
+  },
+  {
+    name: "Mar",
+    usuarios: 500,
+    atividades: 400,
+    performance: 90,
+    engajamento: 82,
+  },
+  {
+    name: "Abr",
+    usuarios: 550,
+    atividades: 450,
+    performance: 92,
+    engajamento: 85,
+  },
+  {
+    name: "Mai",
+    usuarios: 600,
+    atividades: 500,
+    performance: 95,
+    engajamento: 88,
+  },
+  {
+    name: "Jun",
+    usuarios: 650,
+    atividades: 550,
+    performance: 97,
+    engajamento: 90,
+  },
+  {
+    name: "Jul",
+    usuarios: 700,
+    atividades: 600,
+    performance: 98,
+    engajamento: 92,
+  },
 ];
 
 const stats = [
@@ -42,6 +103,37 @@ const stats = [
     value: "24.5%",
     icon: TrendingUp,
     change: "+2.1%",
+  },
+];
+
+const recentActivities = [
+  {
+    id: 1,
+    user: "João Silva",
+    action: "Atualizou o perfil",
+    time: "2 minutos atrás",
+    status: "Concluído",
+  },
+  {
+    id: 2,
+    user: "Maria Santos",
+    action: "Criou novo projeto",
+    time: "15 minutos atrás",
+    status: "Em Andamento",
+  },
+  {
+    id: 3,
+    user: "Pedro Oliveira",
+    action: "Completou tarefa",
+    time: "1 hora atrás",
+    status: "Concluído",
+  },
+  {
+    id: 4,
+    user: "Ana Costa",
+    action: "Adicionou novo usuário",
+    time: "2 horas atrás",
+    status: "Concluído",
   },
 ];
 
@@ -105,13 +197,102 @@ export default function Home() {
               </div>
             </TabsContent>
             <TabsContent value="analytics">
-              <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-                Conteúdo em desenvolvimento
+              <div className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={analyticsData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis yAxisId="left" />
+                    <YAxis yAxisId="right" orientation="right" />
+                    <Tooltip />
+                    <Legend />
+                    <Area
+                      yAxisId="left"
+                      type="monotone"
+                      dataKey="usuarios"
+                      stroke="#8884d8"
+                      fill="#8884d8"
+                      fillOpacity={0.3}
+                      name="Usuários"
+                    />
+                    <Area
+                      yAxisId="left"
+                      type="monotone"
+                      dataKey="atividades"
+                      stroke="#82ca9d"
+                      fill="#82ca9d"
+                      fillOpacity={0.3}
+                      name="Atividades"
+                    />
+                    <Area
+                      yAxisId="right"
+                      type="monotone"
+                      dataKey="performance"
+                      stroke="#ffc658"
+                      fill="#ffc658"
+                      fillOpacity={0.3}
+                      name="Performance (%)"
+                    />
+                    <Area
+                      yAxisId="right"
+                      type="monotone"
+                      dataKey="engajamento"
+                      stroke="#ff7300"
+                      fill="#ff7300"
+                      fillOpacity={0.3}
+                      name="Engajamento (%)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
             </TabsContent>
           </Tabs>
         </CardContent>
       </Card>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <Card>
+          <CardHeader>
+            <CardTitle>Atividades Recentes</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Usuário</TableHead>
+                  <TableHead>Ação</TableHead>
+                  <TableHead>Tempo</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {recentActivities.map((activity) => (
+                  <TableRow key={activity.id}>
+                    <TableCell className="font-medium">{activity.user}</TableCell>
+                    <TableCell>{activity.action}</TableCell>
+                    <TableCell>{activity.time}</TableCell>
+                    <TableCell>
+                      <span
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          activity.status === "Concluído"
+                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                            : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                        }`}
+                      >
+                        {activity.status}
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   );
 }

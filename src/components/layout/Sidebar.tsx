@@ -33,7 +33,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-full flex-col gap-4 border-r bg-gray-100/40 px-4 py-8">
+    <aside className="h-screen sticky top-0 flex flex-col gap-4 border-r bg-gray-100/40 px-4 py-8 w-64">
       <div className="flex flex-col gap-2">
         {sidebarItems.map((item) => (
           <Link key={item.href} href={item.href}>
@@ -47,6 +47,6 @@ export function Sidebar() {
           </Link>
         ))}
       </div>
-    </div>
+    </aside>
   );
 } 

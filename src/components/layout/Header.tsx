@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { Sidebar } from "./Sidebar";
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -27,7 +28,9 @@ export function Header() {
           <SheetHeader>
             <SheetTitle>Menu</SheetTitle>
           </SheetHeader>
-          {/* Mobile Sidebar Content */}
+          <div className="mt-4">
+            <Sidebar />
+          </div>
         </SheetContent>
       </Sheet>
       <div className="flex items-center gap-4">

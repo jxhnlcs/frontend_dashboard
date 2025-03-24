@@ -103,24 +103,4 @@ O dashboard é totalmente responsivo e se adapta a diferentes tamanhos de tela:
 
 ## 🤝 Contribuindo
 
-Contribuições são bem-vindas! Por favor, siga estes passos:
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 👥 Autores
-
-- Seu Nome - [@seu-usuario](https://github.com/seu-usuario)
-
-## 🙏 Agradecimentos
-
-- [Shadcn UI](https://ui.shadcn.com/) pela incrível biblioteca de componentes
-- [Tailwind CSS](https://tailwindcss.com/) pelo framework CSS
-- [Next.js](https://nextjs.org/) pelo framework React
+Contribuições são bem-vindas!
